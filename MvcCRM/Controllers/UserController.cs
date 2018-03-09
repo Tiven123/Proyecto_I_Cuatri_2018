@@ -132,8 +132,8 @@ namespace MvcCRM.Controllers {
 
             [HttpPost]
             [ValidateAntiForgeryToken]
-            public async Task<IActionResult> Authenticate (string emailN, string passwordN) {
-                if (!EmailExists (emailN)) {
+            public async Task<IActionResult> Authenticate (string email, string password) {
+                if (!EmailExists (email)) {
                         return NotFound ();
                     }
 
@@ -142,16 +142,16 @@ namespace MvcCRM.Controllers {
                             var user = from m in _context.User
                             select m;
 
-                            if (!String.IsNullOrEmpty (emailN)) {
-                                user = user.Where (s => s.Title.Contains (emailN));
-                                if (!String.IsNullOrEmpty (passwordN)) {
-                                    user = user.Where (p => p.Title.Contains (passwordN));
+                            if (!String.IsNullOrEmpty (email)) {
+                                user = user.Where (s => s.Title.Contains (email));
+                                if (!String.IsNullOrEmpty (password)) {
+                                    user = user.Where (p => p.Title.Contains (password));
                                 }
                             }
 
                             return View (await user.ToListAsync ();
                         } catch (DbUpdateConcurrencyException) {
-                            if (!EmailExists (emailN)) {
+                            if (!EmailExists (email)) {
                                 return NotFound ();
                             } else {
                                 throw;
