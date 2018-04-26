@@ -1,0 +1,67 @@
+header div {
+	background:#2c3e50;
+	color:#fff;
+}
+
+.main {
+	background:#f2f2f2;
+}
+
+.colorAzul {
+	background: #34495e;
+	color:#fff;
+}
+.colorGris{
+    background: #f2f4f4;
+    color:#000000;
+}
+.colorVerde{
+    
+}
+.colorRojo{
+    
+}
+.colorNegro{
+    background: #000000;
+	color:#FFFFFF;
+}
+.colorBlanco{
+    background: #FFFFFF;
+	color:#000000;
+}
+.colorNaranja{
+    
+}
+.colorVerde{
+    
+}
+.colorVerde{
+    
+}
+.colorVerde{
+    
+}
+
+aside {
+	background:brown;
+	color:#fff;
+}
+
+footer div {
+	background:#34495e;
+	color:#fff;
+}
+
+#florencia{
+    color:floralwhite;
+}
+.row {
+    display: table;
+}
+.row [class*="col-"] {
+    display: table-cell;
+    float: none;
+}
+.row [class*="col-"] {
+    vertical-align: middle;
+}
