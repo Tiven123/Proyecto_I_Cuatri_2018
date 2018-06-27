@@ -12,7 +12,7 @@ class ReplacementsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create replacement" do
     assert_difference('Replacement.count') do
-      post replacements_url, params: { replacement: { brand: @replacement.brand, description: @replacement.description, model: @replacement.model, price: @replacement.price, quantity: @replacement.quantity, type: @replacement.type } }, as: :json
+      post replacements_url, params: { replacement: { description: @replacement.description, price: @replacement.price, quantity: @replacement.quantity } }, as: :json
     end
 
     assert_response 201
@@ -24,7 +24,7 @@ class ReplacementsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update replacement" do
-    patch replacement_url(@replacement), params: { replacement: { brand: @replacement.brand, description: @replacement.description, model: @replacement.model, price: @replacement.price, quantity: @replacement.quantity, type: @replacement.type } }, as: :json
+    patch replacement_url(@replacement), params: { replacement: { description: @replacement.description, price: @replacement.price, quantity: @replacement.quantity } }, as: :json
     assert_response 200
   end
 

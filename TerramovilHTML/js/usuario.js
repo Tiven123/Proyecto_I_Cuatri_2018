@@ -2,76 +2,125 @@ $(document).ready(function () {
     $('#boton-usuario').click(function () {
 
         // se crea un arreglo principal
-        var usuarios = new Array();
+        var usuario = new Array();
 
-        /*Obtener los datos en el LocalStorage*/
-        //verifica que tenga algo
-        if (localStorage.getItem('Usuarios')) {
-            //obtiene los datos guardados
-            var usuariosN = localStorage.getItem('Usuarios');
-            //lo convertimos a un arreglo
-            usuarios = JSON.parse(usuariosN);
-        }
+
 
         /*Obtener datos del formulario*/
-        // crea una arreglo con los datos del formulario
-        var usuario = new Array(10);
         //obtenemos cada dato del formulario
-        usuario[0] = document.getElementById("txtNombre").value;
-        usuario[1] = document.getElementById("txtApellidos").value;
-        usuario[2] = document.getElementById("txtCedula").value;
-        usuario[3] = document.getElementById("txtTelefono").value;
-        usuario[4] = document.getElementById("txtCelular").value;
-        usuario[5] = document.getElementById("txtDireccion").value;
-        usuario[6] = document.getElementById("txtCorreo").value;
-        usuario[7] = document.getElementById("txtUsuario").value;
-        usuario[8] = document.getElementById("txtContrasenna").value;
-        usuario[9] = "user";
+        usuario.name = document.getElementById("txtNombre").value;
+        usuario.rol = "user";
+        usuario.email = document.getElementById("txtCorreo").value;
+        usuario.password = document.getElementById("txtContrasenna").value;
 
         /* se verifica que no hay campos vacios*/
         //se crea una bandera de error
         var error = false;
         // se recorre el arreglo
-        for (var i = 0; i < usuario.length; i++) {
-            //si algun campo esta vacio o nulo
-            if (usuario[i] == "" || usuario[i] == null) {
-                //se activa la bandera
-                error = true;
-                // se muestra un mensaje de error
-                alert("Todos los campos son requeridos");
-                break;
-            }
+
+        //si algun campo esta vacio o nulo
+        if (usuario.name == "" || usuario.name == null || usuario.name.length == 0 || /^\s+$/.test(usuario.name)) {
+            //se activa la bandera
+            error = true;
+            alert("Favor indique el Nombre");
         }
-        /*Guardando los datos en el LocalStorage*/
+        else if (usuario.email == "" || usuario.email == null || usuario.email.length == 0) {
+            //se activa la bandera
+            error = true;
+            alert("Favor indique el Correo");
+        }
+        else if (!(/\S+@\S+\.\S+/.test(usuario.email))) {
+            //se activa la bandera
+            error = true;
+            alert("Favor indique un Correo Valido");
+        }
+        else if (usuario.rol == "" || usuario.rol == null || usuario.name.rol == 0 || /^\s+$/.test(usuario.rol)) {
+            //se activa la bandera
+            error = true;
+            alert("Favor indique el Rol");
+        }
+        else if (usuario.password == "" || usuario.password == null || usuario.password.length == 0) {
+            //se activa la bandera
+            error = true;
+            alert("Favor indique el Nombre");
+        }
+
+        /*Guardando los datos en el API*/
         // si la bandera de error esta desactivada
         if (!error) {
-            // se crea una variable con la cantidad de campos en el arreglo principal
-            // ademas se agrega los datos obtenidos (se crea una matriz)
-            var cantidadUsuarios = usuarios.push(usuario);
-            // se guarda los datos 
-            localStorage.setItem("Usuarios", JSON.stringify(usuarios));
-            // se muestra un mesaje de exito
+            //var User = JSON.stringify(usuario);
+
+            //var http = new XMLHttpRequest();
+            // var url = "http://localhost:3000/users";
+            //http.open("POST", url, true);
+
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:3000/users",
+                data: JSON.stringify(usuario),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    var value = data.d;
+                    if (value.UserID != 0) {
+                        alert.html('success');
+                    }
+                },
+                error: function (e) {
+                }
+            });
+
+            //Send the proper header information along with the request
+            //http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+            //http.onreadystatechange = function () {//Call a function when the state changes.
+            //    if (http.readyState == 4 && http.status == 200) {
+            //        alert(http.responseText);
+            //    }
+            //}
+            //http.send(User);
+
             alert("Usuario Registrado Exitosamente");
 
             /*Limpiando el formulario*/
             //se borran todos los datos del fomulario
             document.getElementById("txtNombre").value = "";
-            document.getElementById("txtApellidos").value = "";
-            document.getElementById("txtCedula").value = "";
-            document.getElementById("txtTelefono").value = "";
-            document.getElementById("txtCelular").value = "";
-            document.getElementById("txtDireccion").value = "";
             document.getElementById("txtCorreo").value = "";
-            document.getElementById("txtUsuario").value = "";
             document.getElementById("txtContrasenna").value = "";
-        } else {
-            alert("Verifique los datos");
         }
     });
 });
 $(document).ready(function () {
-    $('#boton-borrar').click(function () {
+    $('#boton-borrarr').click(function () {
         localStorage.clear();
         alert("Se borra base de datos exitosamente");
+    });
+});
+$(document).ready(function () {
+    $('#boton-Cargar').click(function () {
+        const content = document.getElementById('list');
+        const getConnection = () => {
+            const URL = "http://localhost:3000/users";
+            fetch(URL)
+                .then(response => response.json())
+                .then(response =>
+                for (response i = 0; i < response.length; i++){
+                var obj = arr[i];
+                for (var key in obj) {
+                    var attrName = key;
+                    var attrValue = obj[key];
+                }
+            }
+        }));
+
+        }
+const listar = element => {
+    var fila = '<tr><td> ' + element.name + '</td><td>' + element.rol + '</td><td>' + element.email +
+        '</td><td>' + element.password + '</td></tr>';
+    $('#tablita tr:last').after(fila);
+};
+
+getConnection();
     });
 });

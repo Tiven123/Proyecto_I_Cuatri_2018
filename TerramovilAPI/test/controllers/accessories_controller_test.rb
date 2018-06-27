@@ -12,7 +12,7 @@ class AccessoriesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create accessory" do
     assert_difference('Accessory.count') do
-      post accessories_url, params: { accessory: { brand: @accessory.brand, description: @accessory.description, model: @accessory.model, price: @accessory.price, quantity: @accessory.quantity, type: @accessory.type } }, as: :json
+      post accessories_url, params: { accessory: { description: @accessory.description, price: @accessory.price, quantity: @accessory.quantity } }, as: :json
     end
 
     assert_response 201
@@ -24,7 +24,7 @@ class AccessoriesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update accessory" do
-    patch accessory_url(@accessory), params: { accessory: { brand: @accessory.brand, description: @accessory.description, model: @accessory.model, price: @accessory.price, quantity: @accessory.quantity, type: @accessory.type } }, as: :json
+    patch accessory_url(@accessory), params: { accessory: { description: @accessory.description, price: @accessory.price, quantity: @accessory.quantity } }, as: :json
     assert_response 200
   end
 

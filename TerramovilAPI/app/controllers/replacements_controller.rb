@@ -46,6 +46,6 @@ class ReplacementsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def replacement_params
-      params.require(:replacement).permit(:brand, :model, :type, :description, :price, :quantity)
+      params.require(:replacement).permit(:description, :price, :quantity)
     end
 end

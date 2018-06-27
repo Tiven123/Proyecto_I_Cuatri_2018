@@ -46,6 +46,6 @@ class AccessoriesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def accessory_params
-      params.require(:accessory).permit(:brand, :model, :type, :description, :price, :quantity)
+      params.require(:accessory).permit(:description, :price, :quantity)
     end
 end

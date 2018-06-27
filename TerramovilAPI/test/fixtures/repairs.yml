@@ -1,7 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  date: 2018-04-26
+  date: 2018-05-03
   deviceDescription: MyString
   problem: MyString
   price: 1
@@ -9,7 +9,7 @@ one:
   user: one
 
 two:
-  date: 2018-04-26
+  date: 2018-05-03
   deviceDescription: MyString
   problem: MyString
   price: 1

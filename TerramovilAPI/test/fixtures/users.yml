@@ -2,18 +2,12 @@
 
 one:
   name: MyString
-  lastName: MyString
-  celphone: 1
-  user: MyString
-  password: MyString
   rol: MyString
-  token: MyString
+  email: MyString
+  password: MyString
 
 two:
   name: MyString
-  lastName: MyString
-  celphone: 1
-  user: MyString
-  password: MyString
   rol: MyString
-  token: MyString
+  email: MyString
+  password: MyString
